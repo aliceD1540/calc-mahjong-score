@@ -149,9 +149,9 @@ function calcGame(sheetName) {
 
     // その試合のプレイヤー名を取得
     var playerName1 = sheet.getRange(rowCounter,6).getValue();
-    var playerName2 = sheet.getRange(rowCounter,11).getValue();
-    var playerName3 = sheet.getRange(rowCounter,16).getValue();
-    var playerName4 = sheet.getRange(rowCounter,21).getValue();
+    var playerName2 = sheet.getRange(rowCounter,13).getValue();
+    var playerName3 = sheet.getRange(rowCounter,20).getValue();
+    var playerName4 = sheet.getRange(rowCounter,27).getValue();
 
     // ユーザと参加回数設定
     addGameCount(playerName1);
@@ -169,10 +169,10 @@ function calcGame(sheetName) {
 
     // その試合の最終点数を取得
     var score = [
-      Number(sheet.getRange(rowCounter+sectionCount+3,9).getValue()),
-      Number(sheet.getRange(rowCounter+sectionCount+3,14).getValue()),
-      Number(sheet.getRange(rowCounter+sectionCount+3,19).getValue()),
-      Number(sheet.getRange(rowCounter+sectionCount+3,24).getValue())
+      Number(sheet.getRange(rowCounter+sectionCount+3,11).getValue()),
+      Number(sheet.getRange(rowCounter+sectionCount+3,18).getValue()),
+      Number(sheet.getRange(rowCounter+sectionCount+3,25).getValue()),
+      Number(sheet.getRange(rowCounter+sectionCount+3,32).getValue())
     ];
 
     // 順位カウント
@@ -192,9 +192,9 @@ function calcGame(sheetName) {
     // その試合の和了回数を取得
     var winCount = [
       getWinCount(sheet.getRange(rowCounter+3,7,sectionCount,1).getValues()),
-      getWinCount(sheet.getRange(rowCounter+3,12,sectionCount,1).getValues()),
-      getWinCount(sheet.getRange(rowCounter+3,17,sectionCount,1).getValues()),
-      getWinCount(sheet.getRange(rowCounter+3,22,sectionCount,1).getValues())
+      getWinCount(sheet.getRange(rowCounter+3,14,sectionCount,1).getValues()),
+      getWinCount(sheet.getRange(rowCounter+3,21,sectionCount,1).getValues()),
+      getWinCount(sheet.getRange(rowCounter+3,28,sectionCount,1).getValues())
     ];
     setWinCount(playerName1, winCount[0]);
     setWinCount(playerName2, winCount[1]);
@@ -203,10 +203,10 @@ function calcGame(sheetName) {
 
     // 打点（その試合あたりの合計）
     var daten = [
-      getDaten(sheet.getRange(rowCounter+3,8,sectionCount,1).getValues()),
-      getDaten(sheet.getRange(rowCounter+3,13,sectionCount,1).getValues()),
-      getDaten(sheet.getRange(rowCounter+3,18,sectionCount,1).getValues()),
-      getDaten(sheet.getRange(rowCounter+3,23,sectionCount,1).getValues())
+      getDaten(sheet.getRange(rowCounter+3,9,sectionCount,1).getValues()),
+      getDaten(sheet.getRange(rowCounter+3,16,sectionCount,1).getValues()),
+      getDaten(sheet.getRange(rowCounter+3,23,sectionCount,1).getValues()),
+      getDaten(sheet.getRange(rowCounter+3,30,sectionCount,1).getValues())
     ];
     setDatenSum(playerName1, daten[0]);
     setDatenSum(playerName2, daten[1]);
@@ -215,26 +215,26 @@ function calcGame(sheetName) {
     
     // 流局時聴牌率
     for(var row = 0; row < sectionCount; row++){
-      var tempRow = sheet.getRange(rowCounter+3 + row, 1, 1, 24).getValues();
+      var tempRow = sheet.getRange(rowCounter+3 + row, 1, 1, 33).getValues();
       if(tempRow[0][3] == "流局"){
         addRyukyokuTenpai(playerName1, tempRow[0][5]);
-        addRyukyokuTenpai(playerName2, tempRow[0][10]);
-        addRyukyokuTenpai(playerName3, tempRow[0][15]);
-        addRyukyokuTenpai(playerName4, tempRow[0][20]);
+        addRyukyokuTenpai(playerName2, tempRow[0][12]);
+        addRyukyokuTenpai(playerName3, tempRow[0][19]);
+        addRyukyokuTenpai(playerName4, tempRow[0][26]);
       }
     }
 
     // リーチ回数
-    addRiichiCount(playerName1, sheet.getRange(rowCounter+3,10,sectionCount,1).getValues());
-    addRiichiCount(playerName2, sheet.getRange(rowCounter+3,15,sectionCount,1).getValues());
-    addRiichiCount(playerName3, sheet.getRange(rowCounter+3,20,sectionCount,1).getValues());
-    addRiichiCount(playerName4, sheet.getRange(rowCounter+3,25,sectionCount,1).getValues());
+    addRiichiCount(playerName1, sheet.getRange(rowCounter+3,12,sectionCount,1).getValues());
+    addRiichiCount(playerName2, sheet.getRange(rowCounter+3,19,sectionCount,1).getValues());
+    addRiichiCount(playerName3, sheet.getRange(rowCounter+3,26,sectionCount,1).getValues());
+    addRiichiCount(playerName4, sheet.getRange(rowCounter+3,33,sectionCount,1).getValues());
 
     // 副露回数
-    addFuloCount(playerName1, sheet.getRange(rowCounter+3,10,sectionCount,1).getValues());
-    addFuloCount(playerName2, sheet.getRange(rowCounter+3,15,sectionCount,1).getValues());
-    addFuloCount(playerName3, sheet.getRange(rowCounter+3,20,sectionCount,1).getValues());
-    addFuloCount(playerName4, sheet.getRange(rowCounter+3,25,sectionCount,1).getValues());
+    addFuloCount(playerName1, sheet.getRange(rowCounter+3,12,sectionCount,1).getValues());
+    addFuloCount(playerName2, sheet.getRange(rowCounter+3,19,sectionCount,1).getValues());
+    addFuloCount(playerName3, sheet.getRange(rowCounter+3,26,sectionCount,1).getValues());
+    addFuloCount(playerName4, sheet.getRange(rowCounter+3,33,sectionCount,1).getValues());
   }
   console.log(dict);
 }
